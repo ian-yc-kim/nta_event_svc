@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "event-service"
+version = "0.1.0"
+description = "Event management service"
+authors = ["AI Agent <ai.agent@example.com>"]
+readme = "README.md"
+packages = [{include = "event_service", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.111.0"
+uvicorn = {extras = ["standard"], version = "^0.35.0"}
+pydantic-settings = "^2.2.1"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.0"
+httpx = "^0.27.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
