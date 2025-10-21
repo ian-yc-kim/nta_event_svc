@@ -179,6 +179,10 @@ Responses
 - 422 Unprocessable Entity: validation errors
 - 500 Internal Server Error: {"detail": "Failed to update event"}
 
+Note
+- When any of the following fields are changed: start_time, end_time, location, or participants, asynchronous email notifications are sent to the event's participants.
+- Email sending is performed in a background task and does not block the HTTP response. The API responds immediately; notification delivery occurs independently in the background.
+
 Example request (curl)
 ```
 curl -X PUT http://localhost:8000/events/1 \
