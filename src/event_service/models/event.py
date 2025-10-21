@@ -5,6 +5,7 @@ from sqlalchemy import String as SAString
 from event_service.database import Base
 from typing import Optional, List
 import logging
+from datetime import datetime
 
 
 class ParticipantsType(TypeDecorator):
@@ -54,6 +55,10 @@ class Event(Base):
     location = Column(String, nullable=True)
     # Dialect-aware participants column: Postgres ARRAY(String) else JSON
     participants = Column(ParticipantsType(), nullable=True)
+
+    # Timestamps
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
 
     def __repr__(self) -> str:
         return f"<Event(id={self.id}, name='{self.name}')>"
